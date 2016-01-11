@@ -110,6 +110,67 @@ namespace Lnkcnt
                 }
             }
         }
+
+        public void Exec(String msg)
+        {   // 中カッコ（”｛”、”｝”）のネスト情報を取り出す
+            Setbuf(msg);                 // 入力内容の作業領域設定
+
+            if (!_empty)
+            {   // バッファーに実装有り
+                int _pos = 0;       // 位置情報
+                char[] arry = new char[_wbuf.Length];
+
+                arry = _wbuf.ToCharArray();
+                for (_pos = 0; _pos < _wbuf.Length; _pos++)
+                {
+                    if (arry[_pos] == '{')
+                    {   // [｛]有り？
+                        _lnkcnt++;
+                    }
+                    else
+                    {
+                        if (arry[_pos] == '}')
+                        {   // [｝]有り？
+                            --_lnkcnt;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Setbuf(String _strbuf)
+        {   // [_wbuf]情報設定
+            _wbuf = _strbuf;
+            if (_wbuf == null)
+            {   // 設定情報は無し？
+                _empty = true;
+            }
+            else
+            {   // 整形処理を行う
+                // 不要情報削除
+                if (rskip == null || lskip == null)
+                {   // 未定義？
+                    rskip = new CS_Rskip();
+                    lskip = new CS_Lskip();
+                }
+                rskip.Wbuf = _wbuf;
+                rskip.Exec();
+                lskip.Wbuf = rskip.Wbuf;
+                lskip.Exec();
+                _wbuf = lskip.Wbuf;
+
+                // 作業の為の下処理
+                if (_wbuf.Length == 0 || _wbuf == null)
+                {   // バッファー情報無し
+                    // _wbuf = null;
+                    _empty = true;
+                }
+                else
+                {
+                    _empty = false;
+                }
+            }
+        }
         #endregion
     }
 }

@@ -19,6 +19,13 @@ namespace UnitTest
 
             Assert.AreEqual(0, lnkcnt.Lnkcnt, @"[This is a Pen.] : Nest = 0");
             #endregion
+
+            #region 対象：評価対象なし２
+            lnkcnt.Clear();
+            lnkcnt.Exec(@"This is a Pen.");
+
+            Assert.AreEqual(0, lnkcnt.Lnkcnt, @"2[This is a Pen.] : Nest = 0");
+            #endregion
         }
 
         [TestMethod]

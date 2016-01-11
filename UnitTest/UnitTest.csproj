@@ -35,11 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Lnkcnt">
-      <HintPath>..\Lnkcnt\bin\Release\Lnkcnt.dll</HintPath>
+    <Reference Include="Lnkcnt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Lnkcnt.dll</HintPath>
     </Reference>
-    <Reference Include="LRSkip">
-      <HintPath>..\Lnkcnt\LRSkip.dll</HintPath>
+    <Reference Include="LRSkip, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\LRSkip.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
